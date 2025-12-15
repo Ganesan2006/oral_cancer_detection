@@ -75,16 +75,23 @@ def load_model():
 # ==================== IMAGE PREPROCESSING ====================
 def preprocess_image(img):
     """Preprocess image to match model input requirements"""
+    # Convert to RGB if image is grayscale or has alpha channel
+    if img.mode != 'RGB':
+        img = img.convert('RGB')
+    
     # Resize to 224x224
     img = img.resize((224, 224))
+    
     # Convert to array
     img_array = image.img_to_array(img)
+    
     # Normalize to 0-1 range
     img_array = img_array / 255.0
+    
     # Add batch dimension
     img_array = np.expand_dims(img_array, axis=0)
+    
     return img_array
-
 # ==================== PREDICTION FUNCTION ====================
 def make_prediction(img_array, model):
     """Make prediction using the model"""
