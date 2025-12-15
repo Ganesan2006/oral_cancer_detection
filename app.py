@@ -65,7 +65,7 @@ def load_model():
     """Load the trained DenseNet121 model"""
     try:
         # Try loading from local path first
-        model = tf.keras.models.load_model('best_model.keras')
+        model = tf.keras.models.load_model('oral_cancer_model.keras')
         return model
     except:
         st.warning("⚠️ Model file 'best_model.keras' not found locally.")
